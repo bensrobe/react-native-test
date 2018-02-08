@@ -1,0 +1,335 @@
+__d(function (global, require, module, exports, _dependencyMap) {
+    Object.defineProperty(exports, "__esModule", {
+        value: true
+    });
+
+    var _react2 = require(_dependencyMap[0], "react");
+
+    var _react3 = _interopRequireDefault(_react2);
+
+    var _index = require(_dependencyMap[1], "./node_modules/react-transform-hmr/lib/index.js");
+
+    var _index2 = _interopRequireDefault(_index);
+
+    var _jsxFileName = "/home/bensrobe/Dev/react-native-test/test-app/App.js";
+
+    var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+    var _reactNative = require(_dependencyMap[2], "react-native");
+
+    var _tcombFormNative = require(_dependencyMap[3], "tcomb-form-native");
+
+    var _tcombFormNative2 = _interopRequireDefault(_tcombFormNative);
+
+    function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+    function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+    function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+    function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+    var _components = {
+        App: {
+            displayName: "App"
+        },
+        HeaderImage: {
+            displayName: "HeaderImage"
+        }
+    };
+
+    var _node_modulesReactTransformHmrLibIndexJs2 = (0, _index2.default)({
+        filename: "/home/bensrobe/Dev/react-native-test/test-app/App.js",
+        components: _components,
+        locals: [module],
+        imports: [_react3.default]
+    });
+
+    function _wrapComponent(id) {
+        return function (Component) {
+            return _node_modulesReactTransformHmrLibIndexJs2(Component, id);
+        };
+    }
+
+    var Form = _tcombFormNative2.default.form.Form;
+
+    var DriverInfo = _tcombFormNative2.default.struct({
+        hoursWorked: _tcombFormNative2.default.Number,
+        creditTips: _tcombFormNative2.default.Number
+    });
+
+    var App = _wrapComponent("App")(function (_React$Component) {
+        _inherits(App, _React$Component);
+
+        function App() {
+            _classCallCheck(this, App);
+
+            var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this));
+
+            _this.handleSubmit = function () {
+                var value = _this._form.getValue();
+
+                var minWage = 9.25;
+                var driverPay = 5.00;
+                var totalTips;
+                var cashTips;
+                console.log(value);
+
+                if (value) {
+                    var hours = value.hoursWorked;
+                    var ccTips = value.creditTips;
+                    totalTips = hours * (minWage - driverPay);
+
+                    if (ccTips > totalTips) {
+                        totalTips = ccTips;
+                        cashTips = 0.00;
+                    } else {
+                        cashTips = totalTips - ccTips;
+                    }
+
+                    _this.setState({
+                        totalLabel: totalTips.toFixed(2),
+                        cashLabel: cashTips.toFixed(2)
+                    });
+                }
+
+                _reactNative.Keyboard.dismiss();
+            };
+
+            _this.state = {
+                totalLabel: '0.00',
+                cashLabel: '0.00'
+            };
+            return _this;
+        }
+
+        _createClass(App, [{
+            key: "render",
+            value: function render() {
+                var _this2 = this;
+
+                return _react3.default.createElement(
+                    _reactNative.View,
+                    {
+                        style: styles.screen,
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 60
+                        }
+                    },
+                    _react3.default.createElement(
+                        _reactNative.View,
+                        {
+                            style: styles.headStyle,
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 61
+                            }
+                        },
+                        _react3.default.createElement(HeaderImage, {
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 62
+                            }
+                        }),
+                        _react3.default.createElement(
+                            _reactNative.Text,
+                            {
+                                style: styles.headText,
+                                __source: {
+                                    fileName: _jsxFileName,
+                                    lineNumber: 63
+                                }
+                            },
+                            "Tip Calculator"
+                        )
+                    ),
+                    _react3.default.createElement(
+                        _reactNative.View,
+                        {
+                            style: styles.container,
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 66
+                            }
+                        },
+                        _react3.default.createElement(Form, {
+                            ref: function ref(c) {
+                                return _this2._form = c;
+                            },
+                            type: DriverInfo,
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 71
+                            }
+                        }),
+                        _react3.default.createElement(_reactNative.Button, {
+                            style: styles.btn,
+                            title: "Calculate Tips",
+                            onPress: this.handleSubmit,
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 74
+                            }
+                        })
+                    ),
+                    _react3.default.createElement(
+                        _reactNative.View,
+                        {
+                            style: styles.resultContainer,
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 81
+                            }
+                        },
+                        _react3.default.createElement(
+                            _reactNative.View,
+                            {
+                                style: styles.resultCard,
+                                __source: {
+                                    fileName: _jsxFileName,
+                                    lineNumber: 82
+                                }
+                            },
+                            _react3.default.createElement(
+                                _reactNative.Text,
+                                {
+                                    style: styles.resultLabel,
+                                    __source: {
+                                        fileName: _jsxFileName,
+                                        lineNumber: 83
+                                    }
+                                },
+                                "Cash Tips"
+                            ),
+                            _react3.default.createElement(
+                                _reactNative.Text,
+                                {
+                                    style: styles.resultData,
+                                    __source: {
+                                        fileName: _jsxFileName,
+                                        lineNumber: 84
+                                    }
+                                },
+                                "$",
+                                this.state.cashLabel
+                            )
+                        ),
+                        _react3.default.createElement(
+                            _reactNative.View,
+                            {
+                                style: styles.resultCard,
+                                __source: {
+                                    fileName: _jsxFileName,
+                                    lineNumber: 86
+                                }
+                            },
+                            _react3.default.createElement(
+                                _reactNative.Text,
+                                {
+                                    style: styles.resultLabel,
+                                    __source: {
+                                        fileName: _jsxFileName,
+                                        lineNumber: 87
+                                    }
+                                },
+                                "Total Tips"
+                            ),
+                            _react3.default.createElement(
+                                _reactNative.Text,
+                                {
+                                    style: styles.resultData,
+                                    __source: {
+                                        fileName: _jsxFileName,
+                                        lineNumber: 88
+                                    }
+                                },
+                                "$",
+                                this.state.totalLabel
+                            )
+                        )
+                    )
+                );
+            }
+        }]);
+
+        return App;
+    }(_react3.default.Component));
+
+    exports.default = App;
+
+    var HeaderImage = _wrapComponent("HeaderImage")(function (_React$Component2) {
+        _inherits(HeaderImage, _React$Component2);
+
+        function HeaderImage() {
+            _classCallCheck(this, HeaderImage);
+
+            return _possibleConstructorReturn(this, (HeaderImage.__proto__ || Object.getPrototypeOf(HeaderImage)).apply(this, arguments));
+        }
+
+        _createClass(HeaderImage, [{
+            key: "render",
+            value: function render() {
+                var pic = {
+                    uri: 'http://jetspizza.com/img/headerlogo.png'
+                };
+                return _react3.default.createElement(_reactNative.Image, {
+                    source: pic,
+                    style: {
+                        width: 234,
+                        height: 121
+                    },
+                    __source: {
+                        fileName: _jsxFileName,
+                        lineNumber: 102
+                    }
+                });
+            }
+        }]);
+
+        return HeaderImage;
+    }(_react3.default.Component));
+
+    var styles = _reactNative.StyleSheet.create({
+        screen: {
+            height: '100%',
+            width: '100%',
+            alignItems: 'center'
+        },
+        container: {
+            flex: 1,
+            backgroundColor: '#fff',
+            alignItems: 'center',
+            justifyContent: 'center'
+        },
+        headStyle: {
+            justifyContent: 'flex-end',
+            flex: 1,
+            alignItems: 'center'
+        },
+        headText: {
+            fontSize: 30
+        },
+        resultContainer: {
+            width: '70%',
+            flex: 1,
+            flexDirection: 'row',
+            justifyContent: 'flex-start'
+        },
+        resultCard: {
+            width: '50%',
+            flex: 1,
+            alignItems: 'center'
+        },
+        resultLabel: {
+            fontSize: 20
+        },
+        resultData: {
+            marginTop: 20,
+            fontSize: 30
+        },
+        btn: {
+            backgroundColor: 'cyan'
+        }
+    });
+});
